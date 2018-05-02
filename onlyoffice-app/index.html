@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>OnlyOffice test</title>
+    <meta charset="UTF-8">
+
+  </head>
+  <body>
+    <div id="placeholder"></div>
+    <!-- Indiquer ici une adresse IP qui sera appelée à partir du conteneur onlyoffice-documentstorage -->
+    <script type="text/javascript" src="http://192.168.35.1:8080/web-apps/apps/api/documents/api.js"></script>
+    <script>
+        config = {
+            "document": {
+                "fileType": "docx",
+                "info": {
+                    "author": "John Doe",
+                    "created": "20180401",
+                    "folder": "Folder"
+                },
+                "key": "1",
+                "permissions": {
+                    "comment": true,
+                    "download": true,
+                    "edit": true,
+                    "print": true,
+                    "review": true,
+                },
+                "title": "Lorem Ipsum",
+                "url": "http://onlyoffice-documentstorage:4000/test.docx",
+            },
+            "documentType": "text",
+            "editorConfig": {
+                "lang": "fr-FR",
+                "user": {
+                    "id": "1",
+                    "name": "John Doe"
+                },
+                "callbackUrl": "http://onlyoffice-documentstorage:4000/test.docx",
+                "customization": {
+                    "forceSave": true
+                }
+            }
+        };
+        var docEditor = new DocsAPI.DocEditor("placeholder", config);
+        </script>
+  </body>
+</html>

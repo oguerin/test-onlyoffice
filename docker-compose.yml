@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  onlyoffice-app:
+    image: nginx
+    container_name: onlyoffice-app
+    ports:
+     - "80:80"
+    volumes: 
+      - ./onlyoffice-app/:/usr/share/nginx/html
+    restart: always
+
+  onlyoffice-documentstorage:
+    container_name: onlyoffice-documentstorage
+    build: ./onlyoffice-documentstorage
+    volumes:
+      - .:/data
+    restart: always
+
+  onlyoffice-documentserver:
+    container_name: onlyoffice-documentserver
+    image: onlyoffice/documentserver-de
+    ports:
+     - "8080:80"
+    links:
+      - onlyoffice-documentstorage
+    volumes:
+      - ./data:/var/www/onlyoffice/Data
+      - ./logs:/var/log/onlyoffice
+    restart: always
+
